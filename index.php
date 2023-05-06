@@ -44,7 +44,7 @@
        <h1> <center>Busca por nome IBGE</center></h1>
        <h3> Retorna quantidade de registro por ano </h3> 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <label for="nome">Nome:</label>
+            <label for="nome">Nome   :  </label>
             <input type="text" name="nome" id="nome" required>
             <br><br>
             <input type="submit" value="Enviar">
