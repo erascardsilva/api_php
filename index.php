@@ -1,36 +1,106 @@
-<?php
-$options = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false 
-    )
-);
+<!DOCTYPE html>
+<html>
 
-$context = stream_context_create($options);
+<head>
+    <title>Busca IBGE por nome</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            font-family: Arial, sans-serif;
+        }
 
-$url = "https://servicodados.ibge.gov.br/api/v2/censos/nomes/erasmo";
+        form {
+            width: 300px;
+        }
 
-$resposta = file_get_contents($url, false, $context);
+        .resultado {
+            margin-top: 20px;
+            border-top: 1px solid #000;
+            padding-top: 20px;
+        }
 
-if ($resposta !== false) {
-    $dados = json_decode($resposta, true);
+        .resultado-item {
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
 
-    if ($dados !== null && is_array($dados)) {
-        foreach ($dados as $item) {
-            echo $item['nome'] . '  : ' . '<br>';
+        .resultado-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #000;
+        }
+    </style>
+</head>
 
-            if (isset($item['res'])) {
-                foreach ($item['res'] as $res) {
-                   echo   $res['periodo'] . ' - ' . $res['frequencia'] . '<br>';
+<body>
+    <div>
+       <h1> <center>Busca por nome IBGE</center></h1>
+       <h3> Retorna quantidade de registro por ano </h3> 
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
+            <br><br>
+            <input type="submit" value="Enviar">
+        </form>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Verifica se o campo "nome" foi preenchido
+            if (isset($_POST['nome']) && !empty($_POST['nome'])) {
+                $nome = $_POST['nome'];
+
+                $options = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false
+                    )
+                );
+
+                $context = stream_context_create($options);
+                $linknome = "https://servicodados.ibge.gov.br/api/v2/censos/nomes/" . $nome;
+
+                $resposta = file_get_contents($linknome, false, $context);
+
+                if ($resposta !== false) {
+                    $dados = json_decode($resposta, true);
+
+                    if ($dados !== null && is_array($dados)) {
+                        echo '<div class="resultado">';
+                        foreach ($dados as $item) {
+                            echo '<div class="resultado-item">';
+                            echo '<br>';
+                            echo $item['nome'] . '  : ' . '<br>';
+
+                            if (isset($item['res'])) {
+                                foreach ($item['res'] as $res) {
+                                    echo '<hr>';
+                                    echo $res['periodo'] . ' - ' . $res['frequencia'] . '<br>';
+                                }
+                            } else {
+                                echo 'Dados ausentes para o nome ' . $item['nome'] . '<br>';
+                            }
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    } else {
+                        echo 'Erro na decodificação da resposta JSON ou dados ausentes.';
+                    }
+                } else {
+                    echo 'Erro ao obter os dados da API.';
                 }
             } else {
-                echo 'Dados ausentes para o nome ' . $item['nome'] . '<br>';
+                echo "O campo nome é obrigatório.";
             }
         }
-    } else {
-        echo 'Erro na decodificação da resposta JSON ou dados ausentes.';
-    }
-} else {
-    echo 'Erro ao obter os dados da API.';
-}
-?>
+        ?>
+    </div>
+</body>
+
+</html>
