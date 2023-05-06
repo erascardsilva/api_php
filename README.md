@@ -4,10 +4,10 @@ Busca de dados com relação a registro de nomes de 10 em 10 anos a partir de 19
 Docker PHP Apache
 comandos docker
 
-criar imagem
+criar imagem :
        docker build -t {NOME IMAGEM} .
 
-execultar 
+execultar : 
        docker run -it -p 8000:80 -v {PATH LOCAL }/:/var/www/html/ {NOME IMAGEM}
 
 navegador 
