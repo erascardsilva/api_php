@@ -41,10 +41,12 @@
 
 <body>
     <div>
-       <h1> <center>Busca por nome IBGE</center></h1>
-       <h3> Retorna quantidade de registro por ano </h3> 
+        <h1>
+            <center>Busca por nome IBGE</center>
+        </h1>
+        <h3> Retorna quantidade de registro por ano </h3>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <label for="nome">Nome   :  </label>
+            <label for="nome">Nome : </label>
             <input type="text" name="nome" id="nome" required>
             <br><br>
             <input type="submit" value="Enviar">
@@ -73,7 +75,7 @@
 
                     if ($dados !== null && is_array($dados)) {
                         echo '<div class="resultado">';
-                        echo '<h4>'. "Listando de 10 em 10 anos  : " . '</h4>'; 
+                        echo '<h4>' . "Listando de 10 em 10 anos  : " . '</h4>';
                         foreach ($dados as $item) {
                             echo '<div class="resultado-item">';
                             echo '<br>';
