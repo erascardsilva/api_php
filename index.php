@@ -73,10 +73,11 @@
 
                     if ($dados !== null && is_array($dados)) {
                         echo '<div class="resultado">';
+                        echo '<h4>'. "Listando de 10 em 10 anos  : " . '</h4>'; 
                         foreach ($dados as $item) {
                             echo '<div class="resultado-item">';
                             echo '<br>';
-                            echo $item['nome'] . '  : ' . '<br>';
+                            echo 'Nome   ' . $item['nome'] . '  :  ' . '<br>';
 
                             if (isset($item['res'])) {
                                 foreach ($item['res'] as $res) {
