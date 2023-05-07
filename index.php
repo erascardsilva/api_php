@@ -8,7 +8,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh;
+            height: 80vh;
             font-family: Arial, sans-serif;
         }
 
