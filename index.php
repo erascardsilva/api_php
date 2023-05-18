@@ -14,6 +14,7 @@
 
         form {
             width: 300px;
+                       
         }
 
         .resultado {
