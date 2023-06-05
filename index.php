@@ -101,7 +101,7 @@
                     echo 'Erro ao obter os dados da API.';
                 }
             } else {
-                echo "O campo nome é obrigatório...";
+                echo "O campo nome é obrigatório......";
             }
         }
         ?>
