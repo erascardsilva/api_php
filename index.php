@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Busca IBGE por nome</title>
+    <title>Busca DO IBGE por nome</title>
     <style>
         body {
             display: flex;
@@ -42,14 +42,9 @@
 <body>
     <div>
         <h1>
-            <center>| Busca por nome IBGE |</center>
+            <center>Busca por nome IBGE</center>
         </h1>
         <h3> Retorna quantidade de registro por ano </h3>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <label for="nome">Nome : </label>
-
-       <h1> <center>Busca por nome IBGE</center></h1>
-       <h3> Retorna quantidade de registro por ano </h3> 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <label for="nome">Nome:</label>
 
@@ -82,7 +77,7 @@
                     if ($dados !== null && is_array($dados)) {
                         echo '<div class="resultado">';
                         echo '<h4>' . "Listando de 10 em 10 anos  : " . '</h4>';
-                        
+
                         foreach ($dados as $item) {
                             echo '<div class="resultado-item">';
                             echo '<br>';
