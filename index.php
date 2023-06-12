@@ -42,7 +42,7 @@
 <body>
     <div>
         <h1>
-            <center>Busca por nome IBGE</center>
+            <center>| Busca por nome IBGE |</center>
         </h1>
         <h3> Retorna quantidade de registro por ano </h3>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
